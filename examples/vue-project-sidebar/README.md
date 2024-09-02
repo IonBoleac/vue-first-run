@@ -28,6 +28,5 @@ npm run dev
 npm run build
 ```
 
-
 ## About
 This project was created using the `create-vue` CLI tool and use the [CoreUI Vue 3](https://coreui.io/bootstrap/docs/getting-started/introduction/) template. 

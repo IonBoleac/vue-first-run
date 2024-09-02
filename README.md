@@ -104,6 +104,12 @@ The command will create a new directory called `dist` with the build files. The 
 # Examples 
 There are some examples of Vue.js projects that you can use to learn more about Vue.js and how to create web applications with Vue.js. The examples are located in the [examples](examples) directory. Move to the directory and follow the instructions in the README.md file to run the examples. You can use the examples to learn more about Vue.js and how to create web applications with Vue.js.
 
+## Usage
+In this [dyrectory](./examples/vue-project-sidebar/) it's implemented a drag & drop upload file feature. You can drag and drop a file in the dropzone or click on the dropzone to open the file dialog. The file will be uploaded to the server and the server will return the file information. The file information will be displayed as an alert message. The server will save the file in the `uploads` directory and you must run the server to use this feature. Before you must install the pip (Flask, flask_cors) module required for the server. Run the following command to start the server:
+
+```bash
+python3 backend-test.py
+```
 
 # License
 The code is available under the [MIT license](https://opensource.org/license/MIT) and linked to the [LICENSE](LICENSE) file.
