@@ -1,5 +1,6 @@
 # Vue.js project
-In this repo you will find a Vue.js project that uses the Vue.js framework to create a simple web application that displays a list of items and allows the user to add new items to the list.
+![MQTT Broker](STICH.jpeg)
+In this repo you will find a Vue.js project that uses the [Vue.js](https://vuejs.org/) framework to create a simple web application that displays a list of items and allows the user to add new items to the list.
 
 
 ## Requirements for the Vue project
