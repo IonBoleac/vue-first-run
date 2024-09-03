@@ -14,13 +14,16 @@
       </li>
     </ul>
     <!-- Prevent click event propagation from the button -->
-    <button v-if="files.length > 0" @click.stop="uploadFiles">Upload Files</button>
+    <button class="upload" v-if="files.length > 0" @click.stop="uploadFiles">Upload Files</button>
+    <button class="clear" v-if="files.length > 0" @click.stop="clearFiles">Clear Files</button>
+    <!-- Hidden file input to trigger file selection -->
     <input type="file" ref="fileInput" @change="handleFileInput" multiple hidden />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import config from '@/config';
 
 // Reactive state to manage drag-over and files
 const isDragOver = ref(false);
@@ -28,6 +31,11 @@ const files = ref([]);
 
 // Reference to the hidden file input
 const fileInput = ref(null);
+
+// clear files
+const clearFiles = () => {
+  files.value = [];
+};
 
 // Handle dragover event
 const handleDragOver = () => {
@@ -70,8 +78,15 @@ const uploadFiles = async () => {
     formData.append('files[]', file);
   });
 
+
+  // During development, process.env.NODE_ENV will be development, 
+  // and during production builds, it will be production. This allows you 
+  // to automatically pick the correct configuration based on the environment.
+  const environment = process.env.NODE_ENV;
+  const apiUrl = config[environment].apiUrl;
+
   try {
-    const response = await fetch('http://127.0.0.1:5000/upload', {
+    const response = await fetch(apiUrl, {
       method: 'POST',
       body: formData,
     });
@@ -112,7 +127,7 @@ const uploadFiles = async () => {
   margin: 5px 0;
 }
 
-button {
+button.upload {
   margin-top: 10px;
   padding: 10px 20px;
   background-color: #007bff;
@@ -121,7 +136,20 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+button.upload:hover {
   background-color: #0056b3;
+}
+
+button.clear {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button.clear:hover {
+  background-color: #9f0404;
 }
 </style>
